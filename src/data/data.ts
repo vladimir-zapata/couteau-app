@@ -1,4 +1,4 @@
-import { Section } from "../features/home/Section";
+import { Section } from '../features/home/Section';
 
 const sections: Section[] = [
     {
