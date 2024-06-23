@@ -13,7 +13,7 @@ const WeatherScreen = ({ }: Props) => {
 
   useEffect(() => {
     const fetchWeather = async () => {
-      const url = `http://api.weatherapi.com/v1/current.json?key=${process.env.API_KEY}&q=Dominican+Republic`;
+      const url = `https://api.weatherapi.com/v1/current.json?key=${process.env.API_KEY}&q=Dominican+Republic`;
 
       try {
         const response = await fetch(url);
