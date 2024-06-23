@@ -1,24 +1,109 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {RootStackParamList} from '../App';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, ActivityIndicator, Image } from 'react-native';
+import { RootStackParamList } from '../App';
+import { WeatherAPIResponse } from '../features/weather/WeatherAPIResponse';
+import Spacer from '../ui/spacer/Spacer';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Weather'>;
 
-const WeatherScreen = ({}: Props) => {
+export async function getCurrentWeather(): Promise<WeatherAPIResponse> {
+  const url = `http://api.weatherapi.com/v1/current.json?key=${process.env.API_KEY}&q=Dominican+Republic`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data: WeatherAPIResponse = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching weather data:', error);
+    throw error;
+  }
+}
+
+const WeatherScreen = ({ }: Props) => {
+  const [weather, setWeather] = useState<WeatherAPIResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchWeather = async () => {
+      const url = `http://api.weatherapi.com/v1/current.json?key=${process.env.API_KEY}&q=Dominican+Republic`;
+
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data: WeatherAPIResponse = await response.json();
+        setWeather(data);
+      } catch (error) {
+        console.error('Error fetching weather data:', error);
+        throw error;
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchWeather();
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
+  if (!weather) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.errorText}>Failed to load weather data</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
-        <Text style={styles.container}>Weather Screen</Text>
+      <Text style={styles.title}>Weather in {weather.location.name}, {weather.location.country}</Text>
+      <Text style={styles.text}>Temperature: {weather.current.temp_c}°C</Text>
+      <Text style={styles.text}>Condition: {weather.current.condition.text}</Text>
+      <Text style={styles.text}>Wind: {weather.current.wind_kph} kph</Text>
+      <Text style={styles.text}>Humidity: {weather.current.humidity}%</Text>
+      <Text style={styles.text}>Local Time: {weather.location.localtime}</Text>
+      <Spacer marginTop={20}/>
+      <Image style={styles.icon} source={{ uri: `http:${weather.current.condition.icon}` }} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+    textAlign: 'center',
+    color: 'black',
+  },
+  text: {
+    fontSize: 18,
+    marginBottom: 10,
+  },
+  errorText: {
+    fontSize: 18,
+    color: 'red',
+  },
+  icon: {
+    width: 64,
+    height: 64,
+  },
 });
 
 export default WeatherScreen;

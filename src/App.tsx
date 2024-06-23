@@ -30,13 +30,13 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="GenderPredictor" component={GenderPredictorScreen} />
-        <Stack.Screen name="AgePredictor" component={AgePredictorScreen} />
+        <Stack.Screen name="GenderPredictor" component={GenderPredictorScreen} options={{title: 'Gender Predictor'}}/>
+        <Stack.Screen name="AgePredictor" component={AgePredictorScreen} options={{title: 'Age Predictor'}}/>
         <Stack.Screen name="University" component={UniversityScreen} />
-        <Stack.Screen name="UniversityDetail" component={UniversityDetailScreen} />
+        <Stack.Screen name="UniversityDetail" component={UniversityDetailScreen} options={{title: 'University Detail'}}/>
         <Stack.Screen name="Weather" component={WeatherScreen} />
-        <Stack.Screen name="WPNews" component={WPNewsScreen} />
-        <Stack.Screen name="AboutMe" component={AboutMeScreen} />
+        <Stack.Screen name="WPNews" component={WPNewsScreen} options={{title: 'WP News'}}/>
+        <Stack.Screen name="AboutMe" component={AboutMeScreen}options={{title: 'About Me'}} />
        </Stack.Navigator>
     </NavigationContainer>
   );
