@@ -1,6 +1,6 @@
 # Project Name
 
-Short description or introduction to the project.
+Couteau App
 
 ## Table of Contents
 - [Generating APK](#generating-apk)
