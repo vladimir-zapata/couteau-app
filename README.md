@@ -12,17 +12,17 @@ A set of different tools.
 - [License](#license)
 
 
-# Go to android directory
+### Go to android directory
 ``` 
 cd android
 ``` 
 
-# Generate certificate
+### Generate certificate
 ``` 
 keytool -genkeypair -v -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
 ``` 
 
-# Update ./android/app/build.gradle
+### Update ./android/app/build.gradle
 ``` 
 android {
     ...
@@ -43,7 +43,7 @@ android {
 }
 ```
 
-# Go to ./android and run
+### Go to ./android and run
 ``` 
 ./gradlew assembleRelease
 ```
