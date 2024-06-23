@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   excerpt: {
+    color: '#111111',
     marginTop: 10,
     fontSize: 14,
   },

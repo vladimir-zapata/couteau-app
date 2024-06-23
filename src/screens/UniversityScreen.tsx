@@ -65,6 +65,7 @@ const UniversityScreen = ({navigation}: Props) => {
         placeholder="Enter a country"
         value={country}
         onChangeText={setCountry}
+        placeholderTextColor="black"
       />
       <Button title="Search" onPress={fetchUniversities} />
       <Spacer marginTop={20} />
@@ -82,7 +83,7 @@ const UniversityScreen = ({navigation}: Props) => {
                 navigation.navigate('UniversityDetail', {university: item})
               }>
               <Text style={styles.universityName}>{item.name}</Text>
-              <Text>{item.domains.join(', ')}</Text>
+              <Text style={styles.domain}>{item.domains.join(', ')}</Text>
             </TouchableOpacity>
           )}
         />
@@ -104,6 +105,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   input: {
+    color: 'black',
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
@@ -113,14 +115,18 @@ const styles = StyleSheet.create({
   },
   universityContainer: {
     marginBottom: 20,
-    alignItems: 'center',
     backgroundColor: 'white',
     borderRadius: 10,
     padding: 20,
   },
   universityName: {
-    fontSize: 18,
+    color: 'black',
+    textAlign: 'left',
+    fontSize: 14,
     fontWeight: 'bold',
+  },
+  domain: {
+    color: 'blue',
   },
 });
 

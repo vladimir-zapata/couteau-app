@@ -42,6 +42,7 @@ const AgePredictorScreen = () => {
         style={styles.input}
         placeholder="Enter a name"
         value={name}
+        placeholderTextColor="black"
         onChangeText={setName}
       />
       <Button title="Predict" onPress={fetchAge} />
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   input: {
+    color: 'black',
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,

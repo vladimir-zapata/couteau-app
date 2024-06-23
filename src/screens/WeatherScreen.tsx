@@ -68,11 +68,20 @@ const WeatherScreen = ({ }: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Weather in {weather.location.name}, {weather.location.country}</Text>
-      <Text style={styles.text}>Temperature: {weather.current.temp_c}°C</Text>
-      <Text style={styles.text}>Condition: {weather.current.condition.text}</Text>
-      <Text style={styles.text}>Wind: {weather.current.wind_kph} kph</Text>
-      <Text style={styles.text}>Humidity: {weather.current.humidity}%</Text>
-      <Text style={styles.text}>Local Time: {weather.location.localtime}</Text>
+      <Text style={styles.text}>Temperature</Text>
+      <Text style={styles.text}>{weather.current.temp_c}°C</Text>
+      <Spacer marginBottom={10}/>
+      <Text style={styles.text}>Condition</Text>
+      <Text style={styles.text}>{weather.current.condition.text}</Text>
+      <Spacer marginBottom={10}/>
+      <Text style={styles.text}>Wind</Text>
+      <Text style={styles.text}>{weather.current.wind_kph} kph</Text>
+      <Spacer marginBottom={10}/>
+      <Text style={styles.text}>Humidity</Text>
+      <Text style={styles.text}>{weather.current.humidity}%</Text>
+      <Spacer marginBottom={10}/>
+      <Text style={styles.text}>Local Time</Text>
+      <Text style={styles.text}>{weather.location.localtime}</Text>
       <Spacer marginTop={20}/>
       <Image style={styles.icon} source={{ uri: `http:${weather.current.condition.icon}` }} />
     </View>
@@ -93,6 +102,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   text: {
+    color: 'black',
     fontSize: 18,
     marginBottom: 10,
   },

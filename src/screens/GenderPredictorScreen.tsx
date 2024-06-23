@@ -27,6 +27,7 @@ const GenderPredictorScreen = ({}: Props) => {
         placeholder="Enter a name"
         value={name}
         onChangeText={setName}
+        placeholderTextColor="black"
       />
       <Button title="Predict" onPress={fetchGender} />
       {gender ? (
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
   },
   icon: {fontSize: 24},
   input: {
+    color: 'black',
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
