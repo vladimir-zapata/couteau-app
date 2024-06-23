@@ -7,22 +7,6 @@ import Spacer from '../ui/spacer/Spacer';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Weather'>;
 
-export async function getCurrentWeather(): Promise<WeatherAPIResponse> {
-  const url = `http://api.weatherapi.com/v1/current.json?key=${process.env.API_KEY}&q=Dominican+Republic`;
-
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    const data: WeatherAPIResponse = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching weather data:', error);
-    throw error;
-  }
-}
-
 const WeatherScreen = ({ }: Props) => {
   const [weather, setWeather] = useState<WeatherAPIResponse | null>(null);
   const [loading, setLoading] = useState(true);
