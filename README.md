@@ -1,6 +1,6 @@
-# Project Name
+# Couteau App
 
-Couteau App
+A set of different tools.
 
 ## Table of Contents
 - [Generating APK](#generating-apk)
